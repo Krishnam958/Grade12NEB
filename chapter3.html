@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3: Computer Software and Operating System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        section {
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: #f2f2f2;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        #scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 24px;
+  }
+
+  #scrollToTopBtn:hover {
+    background-color: #555;
+  }
+  .slider {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  .slider img {
+    width: 100%;
+    display: block;
+    transition: opacity 1s ease;
+  }
+
+  .slider .slide {
+    display: none;
+  }
+
+  .slider .active {
+    display: block;
+  }
+
+  @keyframes slideAnimation {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  .question-container {
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+    .question {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .options {
+      list-style-type: none;
+      padding: 0;
+    }
+    .option {
+      background-color: #f1f1f1;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .option:hover {
+      background-color: #ddd;
+    }
+    .feedback {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .correct {
+      color: green;
+    }
+    .wrong {
+      color: red;
+    }
+    .result-img {
+      width: 50px;
+      height: 50px;
+      margin-top: 10px;
+    }
+    .container {
+      width: 60%;
+      margin: 0 auto;
+    }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slide active">
+          <img src="https://www.shutterstock.com/image-vector/cyber-monday-flat-web-banner-260nw-733395259.jpg" alt="Image 1">
+        </div>
+        <div class="slide">
+          <img src="https://www.shutterstock.com/image-vector/cyber-monday-flat-web-banners-260nw-733395262.jpg" alt="Image 2">
+        </div>
+        <div class="slide">
+          <img src="https://assets.gale.com/docs/galepromo/Gale%20In%20Context%20-%20High%20School%20-%20Web%20Banners%20728x90.png" alt="Image 3">
+        </div>
+      </div>
+    
+      <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slider .slide');
+    
+        function showNextSlide() {
+          slides[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add('active');
+        }
+    
+        setInterval(showNextSlide, 2000); // Change every 3 seconds
+      </script>
+    <button id="scrollToTopBtn" onclick="scrollToTop()">↑</button>
+  
+    <script>
+        window.onscroll = function() {
+          if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("scrollToTopBtn").style.display = "block";
+          } else {
+            document.getElementById("scrollToTopBtn").style.display = "none";
+          }
+        };
+    
+        function scrollToTop() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      </script>
+    <h1>Chapter 3: Computer Software and Operating System</h1>
+
+    <section>
+        <h2>Software - Introduction</h2>
+        <p>Hardware by itself cannot perform any useful tasks without proper coordination with software. Software enables the hardware to function effectively and helps in mobilizing various resources. Software consists of sets of instructions known as programs, which tell the computer what to do. In essence, software is a collection of related programs and documentation. For any useful output to be produced, the hardware and software must work together. The different types of software include:</p>
+        
+        <h3>1. System Software</h3>
+        <p>System software includes programs that control the operations of the computer system. These programs are not tailored to the specific needs of the user but are designed to assist in the management and operation of hardware resources. System software supports the running of other software, communicates with peripheral devices, and provides a platform for the development of other software.</p>
+
+        <h4>Categories of System Software:</h4>
+        <ul>
+            <li><strong>System Management:</strong> Responsible for managing the functioning of the computer system and performing management tasks between hardware and software.</li>
+            <ul>
+                <li><strong>Operating System:</strong> The first program loaded into the computer's memory when powered on. It manages the computer's hardware and software resources and provides an interface for users to interact with the system (e.g., Windows, Linux, macOS).</li>
+                <li><strong>Utility Software:</strong> Supporting programs that perform specific tasks related to system maintenance, such as file compression or virus scanning (e.g., Norton Utility, WinZip).</li>
+                <li><strong>Device Drivers:</strong> Software that allows the computer to communicate with external hardware devices like printers, scanners, or keyboards.</li>
+            </ul>
+
+            <li><strong>System Development:</strong> Helps programmers create new programs. System development software includes programming languages and language translators:</li>
+            <ul>
+                <li><strong>Programming Languages:</strong> Sets of instructions that allow users to write programs for the computer. These can be low-level or high-level languages.</li>
+                <li><strong>Language Translators:</strong> Tools that translate programs written in one language into another (e.g., compilers, interpreters, assemblers).</li>
+            </ul>
+        </ul>
+
+        <h3>2. Application Software</h3>
+        <p>Application software refers to programs designed to help users perform specific tasks, such as word processing, spreadsheet management, or image editing. Unlike system software, application software directly addresses the needs of the user.</p>
+
+        <h4>Types of Application Software:</h4>
+        <ul>
+            <li><strong>Packaged Software:</strong> General-purpose software designed for wide usage but may not match every user's needs (e.g., Microsoft Office, Adobe Photoshop).</li>
+            <li><strong>Customized Software:</strong> Tailored software designed to meet the specific needs of a user or organization (e.g., payroll systems, inventory management systems).</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Operating System - Introduction</h2>
+        <p>An operating system (OS) is a collection of programs that manage computer hardware and software resources. It provides a platform for application programs and acts as an intermediary between the user and the computer hardware. The main goal of an OS is to improve the efficiency and performance of a computer system.</p>
+
+        <h3>Functions of an Operating System:</h3>
+        <ul>
+            <li><strong>I/O Management:</strong> Manages the input and output of data between the computer and external devices such as keyboards, printers, etc.</li>
+            <li><strong>User Interface (UI):</strong> Provides a means for users to interact with the computer. There are two primary types of UIs:
+                <ul>
+                    <li><strong>Character/Command User Interface (CUI):</strong> Used in systems like MS-DOS, where commands are typed.</li>
+                    <li><strong>Graphical User Interface (GUI):</strong> Found in systems like Windows and macOS, where users interact with icons and visual elements.</li>
+                </ul>
+            </li>
+            <li><strong>Security:</strong> Protects data and prevents unauthorized access by setting up user accounts and passwords.</li>
+            <li><strong>Process Management:</strong> Allocates CPU time to various processes and ensures that they execute properly.</li>
+            <li><strong>Memory Management:</strong> Manages the computer's memory (RAM), ensuring that each process has enough space to execute.</li>
+            <li><strong>Data Management:</strong> Organizes data into logical groups such as files and directories.</li>
+            <li><strong>Deadlock Prevention:</strong> Avoids situations where two or more processes are stuck in a state where they cannot proceed.</li>
+            <li><strong>Time Sharing:</strong> Allows multiple users to access the computer system simultaneously.</li>
+            <li><strong>Virtual Memory:</strong> Uses disk space as additional memory when the physical memory (RAM) is full.</li>
+        </ul>
+
+        <p>Examples of operating systems include MS-DOS, Windows, macOS, Linux, etc.</p>
+    </section>
+
+    <section>
+        <h2>Types of Operating Systems</h2>
+
+        <h3>A) On the Basis of Processing:</h3>
+        <ul>
+            <li><strong>Multi-programming OS:</strong> Allows multiple programs to run simultaneously by sharing CPU time.</li>
+            <li><strong>Multi-tasking OS:</strong> Allows multiple tasks or processes to run concurrently, typically used in single-user environments.</li>
+            <li><strong>Multiprocessing OS:</strong> Uses more than one CPU to execute multiple processes simultaneously.</li>
+            <li><strong>Time-sharing OS:</strong> Shares processor time among multiple users, providing the illusion of simultaneous execution.</li>
+            <li><strong>Batch Processing OS:</strong> Executes jobs in batches without user interaction during processing.</li>
+            <li><strong>Multi-threading OS:</strong> Divides a process into smaller threads that are executed concurrently.</li>
+            <li><strong>Real-time OS:</strong> Processes data within a fixed time, typically used in systems where time constraints are critical.</li>
+            <li><strong>Online Processing OS:</strong> Processes transactions as soon as they occur, with immediate feedback to the user.</li>
+        </ul>
+
+        <h3>B) On the Basis of User Interface (UI):</h3>
+        <ul>
+            <li><strong>Character User Interface (CUI):</strong> A command-based interface where users interact by typing text commands (e.g., MS-DOS).</li>
+            <li><strong>Graphical User Interface (GUI):</strong> A visual-based interface where users interact with icons and visual elements (e.g., Windows, macOS).</li>
+        </ul>
+    </section>
+
+    <h1>Graphical User Interface (GUI) vs Character User Interface (CUI) and Operating Systems</h1>
+
+    <section>
+        <h2>Features of Graphical User Interface (GUI)</h2>
+        <ul>
+            <li>It is user-friendly, making it easy to use.</li>
+            <li>The user doesn't have to remember commands or syntax.</li>
+            <li>GUI supports full multimedia and animation.</li>
+            <li>It requires larger memory for its processing.</li>
+            <li>GUI environments support multimedia and animation.</li>
+            <li>It can be used in network environments.</li>
+            <li>GUI is multi-tasking, multi-programming, and multi-user operating system.</li>
+            <li>Every type of peripheral device can be used with GUI.</li>
+        </ul>
+
+        <h3>Basic Components of GUI:</h3>
+        <ul>
+            <li><strong>Icon:</strong> Icons are small pictures representing commands, files, or windows.</li>
+            <li><strong>Pointer:</strong> A symbol (usually an angled arrow) controlled by a pointing device such as a mouse, trackpad, or light pen.</li>
+            <li><strong>Desktop:</strong> The area on the display screen where icons are grouped, referred to as the desktop.</li>
+            <li><strong>Windows:</strong> Windows can be resized, moved, and allow different programs or information to be displayed.</li>
+            <li><strong>Menus:</strong> Allow users to select commands from a list of options.</li>
+            <li><strong>Folders:</strong> A graphical representation of a directory or collection of files.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Comparison Between Character User Interface (CUI) and Graphical User Interface (GUI)</h2>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Character User Interface (CUI)</th>
+                    <th>Graphical User Interface (GUI)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Interaction with applications through commands.</td>
+                    <td>Interaction through graphics and visual elements.</td>
+                </tr>
+                <tr>
+                    <td>CUI stands for Character User Interface.</td>
+                    <td>GUI stands for Graphical User Interface.</td>
+                </tr>
+                <tr>
+                    <td>Single tasking (one task at a time).</td>
+                    <td>Multi-tasking (multiple tasks simultaneously).</td>
+                </tr>
+                <tr>
+                    <td>Not very user-friendly.</td>
+                    <td>User-friendly interface.</td>
+                </tr>
+                <tr>
+                    <td>Everything is done using commands.</td>
+                    <td>Applications are interacted with using devices like a mouse.</td>
+                </tr>
+                <tr>
+                    <td>Faster than GUI.</td>
+                    <td>Slower than CUI.</td>
+                </tr>
+                <tr>
+                    <td>Older computers used CUI.</td>
+                    <td>Modern computers use GUI.</td>
+                </tr>
+                <tr>
+                    <td>Examples: DOS, UNIX, etc.</td>
+                    <td>Examples: Windows, macOS, etc.</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Operating Systems Based on User Mode</h2>
+        <h3>1. Single User OS</h3>
+        <p>A single user OS is designed for use by a single user at a time. There are two types:</p>
+        <ul>
+            <li><strong>Single User, Single Tasking:</strong> Can only handle one task at a time (e.g., MS-DOS).</li>
+            <li><strong>Single User, Multi-tasking:</strong> Can handle multiple tasks, allowing the user to perform more than one action simultaneously.</li>
+        </ul>
+
+        <h3>2. Multi User OS</h3>
+        <p>A multi-user OS allows multiple users to access the system at the same time through different terminals. It shares computer resources among users, giving them the impression of simultaneous service, even though they are being served one at a time. This is known as time-sharing.</p>
+        <ul>
+            <li>Examples: Linux, UNIX</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Some Important Operating Systems in Use</h2>
+        <h3>Open Source Operating Systems</h3>
+        <p>Open source operating systems have source code that is freely available and can be modified by anyone. Users do not need to buy a license to use the software, and they can redistribute the modified version legally.</p>
+        <ul>
+            <li>Examples: Linux, Unix, Minix, Open Solaris</li>
+        </ul>
+
+        <h3>Unix</h3>
+        <p>UNIX is a powerful, flexible, and multi-tasking OS developed by AT&T Bell Labs in 1970. It is used in larger machines like mainframes and mini-computers. It has influenced many operating systems such as Linux and Solaris.</p>
+
+        <h3>Linux</h3>
+        <p>Linux is an open-source UNIX-based OS that can run on various platforms. It was developed by Linus Torvalds and released as a free, user-developed project. Linux is popular for servers and distributed through different distributions like Red Hat, Ubuntu, and Fedora.</p>
+
+        <h3>Mac OS</h3>
+        <p>Mac OS is a GUI-based operating system used in Apple Macintosh computers. It is known for its high-quality graphical user interface.</p>
+    </section>
+
+    <section>
+        <h2>Some Terminologies Related to Operating Systems</h2>
+
+        <h3>Spooling</h3>
+        <p>Spooling is used to balance the speed differences between a fast CPU and slower input/output devices. It allows multiple files to be queued and printed sequentially, while the CPU remains free for other tasks.</p>
+
+        <h3>Process</h3>
+        <p>A process is a program in execution. It can be in different states such as running, ready, or blocked. A process is dynamic, whereas a program is static.</p>
+
+        <h3>Thread</h3>
+        <p>Threading is a technique used in operating systems to divide a process into smaller sub-processes that can run concurrently, improving efficiency and minimizing the cost of context switching.</p>
+
+        <h3>Scheduling</h3>
+        <p>Scheduling refers to the process of deciding which process should run first when multiple processes are competing for CPU time. Two types of scheduling are:</p>
+        <ul>
+            <li><strong>Priority Scheduling:</strong> Jobs are executed based on priority, with high-priority jobs being executed first.</li>
+            <li><strong>Time-sharing Scheduling:</strong> Each process is given a fixed amount of time to execute.</li>
+        </ul>
+
+        <h3>Buffering</h3>
+        <p>Buffering uses small storage devices to hold data during input/output operations, improving the efficiency of the system. This is particularly useful in applications like audio/video streaming.</p>
+
+        <h3>Virtual Memory</h3>
+        <p>Virtual memory allows an OS to use space from secondary memory when primary memory (RAM) is insufficient. It divides large programs into smaller chunks, known as pages, and stores them temporarily in secondary memory.</p>
+    </section>
+    <h1 style="text-align: center;">Multiple Choice Quiz</h1>
+    <div class="container">
+    <div class="question-container">
+      <p class="question"> What is the primary purpose of an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 1)">A) To execute programs</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 1)">B) To store data</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 1)">C) To manage hardware and software resources</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 1)">D) To browse the internet</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an example of system software?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 2)">A) Microsoft Word</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 2)">B) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 2)">C) Google Chrome</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 2)">D) Adobe Photoshop</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What is an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 3)">A) A program that executes games</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 3)">B) A program used for word processing</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 3)">C) A software that manages hardware and software resources</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 3)">D) A program that compiles high-level languages</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is NOT an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 4)">A) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 4)">B) macOS</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 4)">C) Windows</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 4)">D) Microsoft Word</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an example of application software?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'a', 5)">A) Microsoft Word</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 5)">B) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 5)">C) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 5)">D) BIOS</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What type of software is used to manage and organize files on a computer system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'a', 6)">A) Operating System</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 6)">B) Antivirus Software</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 6)">C) File Management Software</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 6)">D) Word Processor</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What does the acronym 'GUI' stand for in computing?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 7)">A) General User Interface</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 7)">B) Graphical User Interface</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 7)">C) Generalized User Interface</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 7)">D) Graphical Usage Indicator</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of these is a primary function of an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 8)">A) Manage users</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 8)">B) Execute software programs</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 8)">C) Manage hardware resources</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 8)">D) Create and modify files</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is NOT a function of the operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 9)">A) Memory management</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 9)">B) Process scheduling</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 9)">C) File management</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 9)">D) Performing calculations</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What is the main purpose of utility software?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 10)">A) To develop applications</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 10)">B) To manage hardware</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 10)">C) To perform system maintenance tasks</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 10)">D) To browse the internet</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is a real-time operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 11)">A) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 11)">B) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 11)">C) RTOS (Real-Time Operating System)</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 11)">D) macOS</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is NOT an example of a Linux distribution?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 12)">A) Ubuntu</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 12)">B) Fedora</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 12)">C) Debian</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 12)">D) Windows 7</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an example of open-source software?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 13)">A) macOS</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 13)">B) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 13)">C) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 13)">D) Microsoft Office</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which part of the operating system handles the execution of programs?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 14)">A) File Manager</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 14)">B) Process Manager</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 14)">C) Memory Manager</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 14)">D) Device Manager</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What is the function of the kernel in an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 15)">A) It controls user interface</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 15)">B) It manages hardware resources</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 15)">C) It manages the memory</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 15)">D) It schedules processes</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an example of a mobile operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 16)">A) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 16)">B) macOS</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 16)">C) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 16)">D) Android</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an example of a graphical user interface (GUI)?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'a', 17)">A) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 17)">B) DOS</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 17)">C) Linux terminal</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 17)">D) Command Prompt</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question">Which operating system is known for its security features and is commonly used in servers?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 18)">A) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 18)">B) macOS</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 18)">C) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 18)">D) Android</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of these is a function of an operating system's memory manager?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 19)">A) Control access to memory</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 19)">B) Allocate and deallocate memory</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 19)">C) Execute programs</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 19)">D) Manage input/output devices</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which type of software helps to optimize system performance?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 20)">A) Antivirus software</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 20)">B) Media player</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 20)">C) Utility software</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 20)">D) Word processor</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an open-source operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'a', 21)">A) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 21)">B) macOS</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 21)">C) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 21)">D) iOS</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What is the purpose of a device driver in an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 22)">A) Manages hardware components</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 22)">B) Manages user interfaces</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 22)">C) Installs system updates</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 22)">D) Enables communication between hardware and software</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What does the term "multitasking" refer to in an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 23)">A) Running multiple programs in sequence</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 23)">B) Running a single program at once</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 23)">C) Running multiple programs simultaneously</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 23)">D) Running a program in the background</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of these is a common feature of modern operating systems?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 24)">A) No user interface</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 24)">B) Limited functionality</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 24)">C) Only command-line interface</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 24)">D) Graphical user interface (GUI)</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an example of a non-volatile memory used in operating systems?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 25)">A) RAM</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 25)">B) ROM</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 25)">C) Cache</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 25)">D) Virtual memory</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    <div class="question-container">
+      <p class="question"> Which of the following is a primary function of an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 1)">A) To process user input</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 1)">B) To manage hardware and software resources</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 1)">C) To execute application software</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 1)">D) To store data in memory</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of these operating systems is known for its open-source nature?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'a', 2)">A) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 2)">B) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 2)">C) macOS</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 2)">D) Android</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What type of operating system is designed to support multiple users at the same time?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 3)">A) Single-tasking</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 3)">B) Multi-user</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 3)">C) Single-user</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 3)">D) Real-time</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is a popular file system used in Windows operating systems?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 4)">A) ext4</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 4)">B) HFS+</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 4)">C) FAT32</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 4)">D) NTFS</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What is the function of the 'Shell' in an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 5)">A) It manages hardware resources</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 5)">B) It executes commands entered by the user</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 5)">C) It is a command-line interface to interact with the OS</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 5)">D) It stores and organizes files</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of these is an example of an open-source software license?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 6)">A) Microsoft License</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 6)">B) Adobe License</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 6)">C) Apple License</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 6)">D) GPL (General Public License)</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an example of a real-time operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 7)">A) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 7)">B) macOS</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 7)">C) RTOS (Real-Time Operating System)</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 7)">D) Linux</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What is the primary function of the 'File Manager' in an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 8)">A) To perform calculations</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 8)">B) To organize and manage files and directories</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 8)">C) To provide system security</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 8)">D) To execute applications</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is a key characteristic of a 64-bit operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 9)">A) It can only run 32-bit software</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 9)">B) It is faster than 32-bit operating systems</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 9)">C) It has a 32-bit processor</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 9)">D) It can access more memory than a 32-bit system</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What is the role of the 'Device Driver' in an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'a', 10)">A) It enables communication between hardware and software</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 10)">B) It monitors system security</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 10)">C) It manages network connectivity</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 10)">D) It schedules tasks for CPU execution</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an example of a multi-tasking operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 11)">A) MS-DOS</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 11)">B) Windows 98</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 11)">C) macOS 9</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 11)">D) Windows 10</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is a function of the 'Kernel' in an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 12)">A) Execute applications</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 12)">B) Manage system resources like CPU, memory, and devices</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 12)">C) Provide a user interface</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 12)">D) Run security checks</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    <div class="question-container">
+      <p class="question"> Which operating system is primarily used on Apple's personal computers?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 13)">A) Windows</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 13)">B) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 13)">C) macOS</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 13)">D) Android</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is used to manage memory in an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 14)">A) Hard Drive</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 14)">B) CPU</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 14)">C) RAM</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 14)">D) Memory Manager</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an example of a 'cloud-based' operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'a', 15)">A) Chrome OS</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 15)">B) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 15)">C) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 15)">D) macOS</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What is the key difference between 32-bit and 64-bit operating systems?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 16)">A) 64-bit systems are slower</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 16)">B) 32-bit systems support more memory</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 16)">C) 64-bit systems use less memory</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 16)">D) 64-bit systems can use more memory</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of these is an essential component of system security in modern operating systems?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'a', 17)">A) Antivirus software</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 17)">B) Word Processor</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 17)">C) Media Player</li>
+        <li class="option" onclick="checkAnswer(this, 'a', 17)">D) Web Browser</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following operating systems is primarily designed for mobile devices?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 18)">A) Windows 10</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 18)">B) macOS</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 18)">C) Linux</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 18)">D) Android</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of these is the main function of a 'Virtual Memory' in an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 19)">A) It stores files permanently</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 19)">B) It manages file permissions</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 19)">C) It extends the available physical memory</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 19)">D) It handles network connections</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is true about an operating system's 'Process Scheduler'?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 20)">A) It manages memory usage</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 20)">B) It controls the execution of processes</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 20)">C) It manages hardware resources</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 20)">D) It manages user authentication</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of these is an important part of system security in operating systems?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 21)">A) Antivirus software</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 21)">B) Firewall</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 21)">C) File compression software</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 21)">D) Web browser</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> What is the purpose of the 'Swap Space' in an operating system?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'c', 22)">A) To provide a backup for the operating system</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 22)">B) To manage the file system</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 22)">C) To store data when physical RAM is full</li>
+        <li class="option" onclick="checkAnswer(this, 'c', 22)">D) To manage memory addresses</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of the following is an example of system software?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'd', 23)">A) Microsoft Word</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 23)">B) VLC Media Player</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 23)">C) Adobe Photoshop</li>
+        <li class="option" onclick="checkAnswer(this, 'd', 23)">D) Windows 10</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    
+    <div class="question-container">
+      <p class="question"> Which of these is a key feature of modern operating systems?</p>
+      <ul class="options">
+        <li class="option" onclick="checkAnswer(this, 'b', 24)">A) No user interface</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 24)">B) Support for multitasking</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 24)">C) Limited security features</li>
+        <li class="option" onclick="checkAnswer(this, 'b', 24)">D) Only command-line interface</li>
+      </ul>
+      <div class="feedback"></div>
+    </div>
+    </div>
+    
+      
+    <script>
+      function checkAnswer(option, correctAnswer) {
+        // Remove any previous feedback
+        const feedback = option.parentNode.querySelector('.feedback');
+        const options = option.parentNode.querySelectorAll('.option');
+        options.forEach(opt => opt.style.backgroundColor = "");
+    
+        // Check if the answer is correct
+        if (option.innerText[0].toLowerCase() === correctAnswer) {
+          option.style.backgroundColor = "green"; // Correct answer
+          feedback.innerHTML = "Correct! A printer is an output device, not an input device.";
+          feedback.style.color = "green";
+        } else {
+          option.style.backgroundColor = "red"; // Incorrect answer
+          feedback.innerHTML = "Incorrect! Try again.";
+          feedback.style.color = "red";
+        }
+      }
+    </script>
+  
+  
+</body>
+</html>
+

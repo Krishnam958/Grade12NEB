@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number System, Conversion, and Boolean Logic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        ul {
+            list-style-type: square;
+        }
+        section {
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        
+        }
+        code {
+            font-family: Courier, monospace;
+            background-color: #f4f4f4;
+            padding: 5px;
+        }
+        table {
+            width: 50%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        #scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 24px;
+  }
+
+  #scrollToTopBtn:hover {
+    background-color: #555;
+  }
+  .slider {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  .slider img {
+    width: 100%;
+    display: block;
+    transition: opacity 1s ease;
+  }
+
+  .slider .slide {
+    display: none;
+  }
+
+  .slider .active {
+    display: block;
+  }
+
+  @keyframes slideAnimation {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slide active">
+          <img src="https://www.shutterstock.com/image-vector/cyber-monday-flat-web-banner-260nw-733395259.jpg" alt="Image 1">
+        </div>
+        <div class="slide">
+          <img src="https://www.shutterstock.com/image-vector/cyber-monday-flat-web-banners-260nw-733395262.jpg" alt="Image 2">
+        </div>
+        <div class="slide">
+          <img src="https://assets.gale.com/docs/galepromo/Gale%20In%20Context%20-%20High%20School%20-%20Web%20Banners%20728x90.png" alt="Image 3">
+        </div>
+      </div>
+    
+      <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slider .slide');
+    
+        function showNextSlide() {
+          slides[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add('active');
+        }
+    
+        setInterval(showNextSlide, 2000); // Change every 3 seconds
+      </script>
+    <button id="scrollToTopBtn" onclick="scrollToTop()">↑</button>
+  
+    <script>
+        window.onscroll = function() {
+          if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("scrollToTopBtn").style.display = "block";
+          } else {
+            document.getElementById("scrollToTopBtn").style.display = "none";
+          }
+        };
+    
+        function scrollToTop() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      </script>
+    <h1>Chapter 2: Number System, Conversion and Boolean Logic</h1>
+
+    <section>
+        <h2>1's and 2's Complement</h2>
+
+        <h3>1's Complement</h3>
+        <p>1's Complement is the reciprocal of 1's to 0's and 0's to 1's. For example, the 1's complement of <code>1011</code> is <code>0100</code>.</p>
+
+        <h3>2's Complement</h3>
+        <p>2's Complement is obtained by adding 1 to the 1's complement of a given binary number. For example, for <code>1010</code>, the 1's complement is <code>0101</code>, and the 2's complement is <code>0101 + 1 = 0110</code>.</p>
+
+        <h3>Subtraction using 1's and 2's Complement</h3>
+        <p>To subtract using 1's or 2's complement, follow these rules for a question like <code>X - Y</code>:</p>
+        <ul>
+            <li><strong>Using 1's Complement:</strong> 
+                <ol>
+                    <li>Calculate the 1's complement of <code>Y</code>.</li>
+                    <li>Add the result to <code>X</code>.</li>
+                    <li>If there is an extra bit, remove it and add it to the remaining bits.</li>
+                    <li>If there is no extra bit, find the 1's complement of the result and add a negative sign.</li>
+                </ol>
+            </li>
+            <li><strong>Using 2's Complement:</strong>
+                <ol>
+                    <li>Calculate the 2's complement of <code>Y</code>.</li>
+                    <li>Add the result to <code>X</code>.</li>
+                    <li>If there is an extra bit, remove it and add it to the remaining bits.</li>
+                    <li>If there is no extra bit, find the 2's complement of the result and add a negative sign.</li>
+                </ol>
+            </li>
+        </ul>
+
+        <h3>Example 1: Subtract <code>1000</code> from <code>111</code> using 1's and 2's Complement</h3>
+        <h4>A) Using 1's Complement</h4>
+        <p>Given: <code>111</code> - <code>1000</code></p>
+        <ul>
+            <li>1's complement of <code>1000</code> is <code>0111</code></li>
+            <li>Add <code>111 + 0111 = 1110</code></li>
+            <li>1's complement of <code>1110</code> is <code>0001</code>, and add a negative sign: <code>-(0001)</code></li>
+        </ul>
+
+        <h4>B) Using 2's Complement</h4>
+        <ul>
+            <li>2's complement of <code>1000</code> is <code>0111 + 1 = 1000</code></li>
+            <li>Add <code>111 + 1000 = 1111</code></li>
+            <li>2's complement of <code>1111</code> is <code>0000 + 1 = 0001</code>, and add a negative sign: <code>-(0001)</code></li>
+        </ul>
+
+        <h3>Example 2: Subtract <code>11001</code> from <code>11101</code> using 1's and 2's Complement</h3>
+        <h4>A) Using 1's Complement</h4>
+        <p>Given: <code>11101</code> - <code>11001</code></p>
+        <ul>
+            <li>1's complement of <code>11001</code> is <code>00110</code></li>
+            <li>Add <code>00110 + 11101 = 100011</code></li>
+            <li>Since there is an extra bit, remove it and add it to the remaining bit: <code>00011 + 1 = 00100</code></li>
+            <li>Final result: <code>00100</code></li>
+        </ul>
+
+        <h4>B) Using 2's Complement</h4>
+        <ul>
+            <li>2's complement of <code>11001</code> is <code>00110 + 1 = 00111</code></li>
+            <li>Add <code>00111 + 11101 = 100100</code></li>
+            <li>Since there is an extra bit, remove it: <code>00100</code></li>
+            <li>Final result: <code>00100</code></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Introduction: Boolean Logic</h2>
+        <p>Boolean Algebra is the algebra of logic, which deals with the study of binary variables and logical operations. Since all data is represented in binary values, Boolean algebra is used to manipulate these values with specific rules and expressions. It is fundamental for analyzing and designing logic circuits. The concept was introduced by George Boole, an English mathematician.</p>
+
+        <h3>Boolean Algebra</h3>
+        <p>Boolean algebra involves operations on binary variables, where each variable can have one of two values: <code>0</code> (False) or <code>1</code> (True). These operations are essential in digital computers that process information as binary data.</p>
+
+        <h3>Boolean Variables</h3>
+        <p>In Boolean algebra, variables (denoted by <code>A</code>, <code>B</code>, <code>P</code>, <code>Q</code>, etc.) can only have one of two values: <code>0</code> or <code>1</code>.</p>
+
+        <h3>Boolean Function (Logic Function)</h3>
+        <p>A Boolean function is an expression that combines binary variables and operators such as AND, OR, NOT, and parentheses. For a given set of values, the Boolean function produces either a <code>0</code> or <code>1</code> as output.</p>
+        <p>For example: <code>F = XYZ' + XY</code>, where <code>F</code> is the Boolean function, and <code>X</code>, <code>Y</code>, <code>Z</code> are Boolean variables. <code>Z'</code> is the complement of <code>Z</code>.</p>
+
+        <h3>Truth Table</h3>
+        <p>A truth table is a table that shows the input-output relationship for each logical gate. It represents the results of logical operations for all possible combinations of logical values. Here’s an example of a truth table for the AND operation:</p>
+        <table border="1" cellpadding="5">
+            <thead>
+                <tr>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>Output (X AND Y)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <h1>Boolean Operators and Logic Gates</h1>
+
+    <section>
+        <h2>Boolean Operators</h2>
+        
+        <h3>a. AND Operator</h3>
+        <p>The AND operator is represented by <code>.</code>. So, <code>A AND B</code> is written as <code>(A.B)</code>. The result of the AND operation is the same as simple arithmetic multiplication. This means the result will be high (1) only when both inputs are high. Note: <code>A AND B</code> can also be represented as <code>AˆB</code> or <code>AnB</code>.</p>
+        
+        <h4>Truth Table for AND Operation</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>Y = A.B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+            </tbody>
+        </table>
+
+        <h3>b. OR Operator</h3>
+        <p>The OR operator is represented by <code>+</code>. So, <code>A OR B</code> is written as <code>(A+B)</code>. The result of the OR operation is the same as simple arithmetic addition. This means the result will be low (0) if and only if both inputs are low. Note: <code>A OR B</code> can also be represented as <code>AvB</code> or <code>AuB</code>.</p>
+        
+        <h4>Truth Table for OR Operation</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>Y = A+B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+            </tbody>
+        </table>
+
+        <h3>c. NOT Operator</h3>
+        <p>The NOT operator is represented by <code>-</code> or <code>'</code>. So, the NOT operation of an operand <code>A</code> is written as <code>A'</code>. The NOT operation performs negation, meaning it will give a high output (1) for a low input (0) and vice-versa.</p>
+
+        <h4>Truth Table for NOT Operation</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>A'</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Logic Gates</h2>
+
+        <h3>a. AND Gate</h3>
+        <p>The AND gate is an electronic circuit that produces a high output (1) only when both inputs are high. The output is the same as the result of basic arithmetic multiplication. This gate can have more than two inputs and produce a single output.</p>
+        
+        <h4>Truth Table for AND Gate</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>Y = A.B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+            </tbody>
+        </table>
+
+        <h3>b. OR Gate</h3>
+        <p>The OR gate is an electronic circuit that produces a low output (0) only when all inputs are low (0). The output is the same as basic binary addition, and it may have two or more inputs to produce a single result.</p>
+
+        <h4>Truth Table for OR Gate</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>Y = A+B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td></tr>
+            </tbody>
+        </table>
+
+        <h3>c. NOT Gate</h3>
+        <p>The NOT gate is another fundamental gate whose result is the complement of its input. It is also known as an inverter. The NOT gate has a single input and produces a single output.</p>
+        
+        <h4>Truth Table for NOT Gate</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>A'</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td></tr>
+            </tbody>
+        </table>
+
+        <h3>d. NAND Gate</h3>
+        <p>The NAND gate is a derived gate, created from NOT and AND gates. This gate inverts the output of the AND gate. It produces a low output (0) when both inputs are high (1) and produces a high output (1) when any one of the inputs is low (0).</p>
+        
+        <h4>Truth Table for NAND Gate</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>A.B</th>
+                    <th>Y = (A.B)' </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+            </tbody>
+        </table>
+
+        <h3>e. NOR Gate</h3>
+        <p>The NOR gate is a derived gate, created from the combination of OR and NOT gates. This gate inverts the output of the OR gate. It produces a high output (1) when both inputs are low (0) and produces a low output (0) in all other combinations of inputs.</p>
+        
+        <h4>Truth Table for NOR Gate</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>A+B</th>
+                    <th>Y = (A+B)' </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td><td>0</td></tr>
+            </tbody>
+        </table>
+    </section>
+    <h1>Boolean Operators and Logic Gates</h1>
+
+    <section>
+        <h2>f. Exclusive OR (X-OR)</h2>
+        <p>The Exclusive OR (X-OR) gate is a digital electronic circuit that generates a low (0) output when both inputs are either low (0) or high (1). It produces a high (1) output only when one of the inputs is high. This gate may have two or more inputs.</p>
+
+        <h4>Graphical Representation</h4>
+        <p>The X-OR gate is represented graphically as:</p>
+        <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Exclusive_OR_gate.svg/500px-Exclusive_OR_gate.svg.png" alt="X-OR Gate"></p>
+
+        <h4>Algebraic Expression</h4>
+        <p>The output of an X-OR gate can be expressed algebraically as:</p>
+        <code>Y = A'.B + A.B'</code>
+
+        <h4>Truth Table for X-OR Gate</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>A'</th>
+                    <th>B'</th>
+                    <th>A'.B</th>
+                    <th>A.B'</th>
+                    <th>A'.B + A.B'</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            </tbody>
+        </table>
+
+        <h2>g. Exclusive NOR (X-NOR)</h2>
+        <p>The Exclusive NOR (X-NOR) gate is a digital electronic circuit that generates a high (1) output when both the inputs are either low (0) or high (1). It gives a low (0) output only when one of the inputs is high (1). This gate may have two or more inputs.</p>
+
+        <h4>Graphical Representation</h4>
+        <p>The X-NOR gate is represented graphically as:</p>
+        <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Exclusive_NOR_gate.svg/500px-Exclusive_NOR_gate.svg.png" alt="X-NOR Gate"></p>
+
+        <h4>Algebraic Expression</h4>
+        <p>The output of an X-NOR gate can be expressed algebraically as:</p>
+        <code>Y = A.B + A'.B'</code>
+
+        <h4>Truth Table for X-NOR Gate</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>A'</th>
+                    <th>B'</th>
+                    <th>A.B</th>
+                    <th>A'.B'</th>
+                    <th>A.B + A'.B'</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section>
+        <h2>De-Morgan's Theorem</h2>
+
+        <h3>First Theorem</h3>
+        <p>De-Morgan's first theorem states that: “The complement of a sum equals the product of its complement.” It is represented as:</p>
+        <code>(A + B)' = A'.B'</code>
+
+        <h4>Truth Table for First Theorem</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>(A+B)</th>
+                    <th>(A+B)' </th>
+                    <th>A'</th>
+                    <th>B'</th>
+                    <th>A'.B'</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+                <tr><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Second Theorem</h3>
+        <p>De-Morgan's second theorem states that: “The complement of a product equals the sum of its complement.” It is represented as:</p>
+        <code>(A.B)' = A' + B'</code>
+
+        <h4>Truth Table for Second Theorem</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>(A.B)</th>
+                    <th>(A.B)' </th>
+                    <th>A'</th>
+                    <th>B'</th>
+                    <th>A' + B'</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+                <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+                <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+                <tr><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+            </tbody>
+        </table>
+    </section>
+    <header>
+        <p>Important Questions and Solutions</p>
+    </header>
+
+    <section id="number-system">
+        <h2>1. Number System</h2>
+
+        <div class="question">
+            <h3>Q1: Convert the binary number 110101 to its decimal equivalent.</h3>
+            <div class="solution">
+                <p><strong>Solution:</strong> The binary number 110101 can be converted to decimal as follows:</p>
+                <p>1 * 2<sup>5</sup> + 1 * 2<sup>4</sup> + 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup> = 32 + 16 + 0 + 4 + 0 + 1 = 53</p>
+                <p><strong>Answer:</strong> 53 (Decimal)</p>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>Q2: Convert the decimal number 56 to its binary equivalent.</h3>
+            <div class="solution">
+                <p><strong>Solution:</strong> To convert decimal 56 to binary, divide by 2 and record the remainders:</p>
+                <p>56 ÷ 2 = 28 (remainder 0)</p>
+                <p>28 ÷ 2 = 14 (remainder 0)</p>
+                <p>14 ÷ 2 = 7 (remainder 0)</p>
+                <p>7 ÷ 2 = 3 (remainder 1)</p>
+                <p>3 ÷ 2 = 1 (remainder 1)</p>
+                <p>1 ÷ 2 = 0 (remainder 1)</p>
+                <p>So, 56 in decimal is 111000 in binary.</p>
+                <p><strong>Answer:</strong> 111000 (Binary)</p>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>Q3: Convert the hexadecimal number A3 to its binary equivalent.</h3>
+            <div class="solution">
+                <p><strong>Solution:</strong> Hexadecimal A3 is equivalent to:</p>
+                <p>A = 1010 (binary) and 3 = 0011 (binary)</p>
+                <p>Thus, A3 in hexadecimal is 10100011 in binary.</p>
+                <p><strong>Answer:</strong> 10100011 (Binary)</p>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>Q4: Convert the binary number 1011101 to hexadecimal.</h3>
+            <div class="solution">
+                <p><strong>Solution:</strong> Group the binary number in sets of four digits (from right to left): 1011 101</p>
+                <p>1011 = B, 101 = 5 (add leading zeros to make 4 bits: 0101)</p>
+                <p>Thus, 1011101 in binary is B5 in hexadecimal.</p>
+                <p><strong>Answer:</strong> B5 (Hexadecimal)</p>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="boolean-logic">
+        <h2>2. Boolean Logic</h2>
+
+        <div class="question">
+            <h3>Q1: Simplify the Boolean expression: A'B + AB' + AB.</h3>
+            <div class="solution">
+                <p><strong>Solution:</strong> Use Boolean algebra rules to simplify the expression:</p>
+                <p>A'B + AB' + AB = A'B + A(B' + B) = A'B + A1 = A'B + A</p>
+                <p><strong>Answer:</strong> A'B + A</p>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>Q2: Find the truth table for the expression: A AND B</h3>
+            <div class="solution">
+                <p><strong>Solution:</strong> The truth table for the AND operation is:</p>
+                <table>
+                    <tr>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>A AND B</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                </table>
+                <p><strong>Answer:</strong> The result of A AND B is 1 only when both A and B are 1.</p>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>Q3: What is the simplification of the Boolean expression: (A + B)(A' + C)?</h3>
+            <div class="solution">
+                <p><strong>Solution:</strong> Using the distributive property:</p>
+                <p>(A + B)(A' + C) = A(A' + C) + B(A' + C) = AA' + AC + BA' + BC</p>
+                <p>Since AA' = 0, we get: AC + BA' + BC</p>
+                <p><strong>Answer:</strong> AC + BA' + BC</p>
+            </div>
+        </div>
+
+        <div class="question">
+            <h3>Q4: What is the Boolean expression for the given circuit (based on given logic gates)?</h3>
+            <div class="solution">
+                <p><strong>Solution:</strong> This type of question would require the user to visualize or be provided with the circuit. The Boolean expression is derived from the AND, OR, NOT, etc., gates in the circuit.</p>
+                <p><strong>Example Answer:</strong> If the circuit has AND and OR gates with inputs A and B, the Boolean expression can be A AND (B OR C), which simplifies to A(BC).</p>
+            </div>
+        </div>
+
+    </section>
+</body>
+</html>
+
+
+

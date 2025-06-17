@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5: Programming Concepts and Logic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+        p {
+            font-size: 16px;
+        }
+        .content {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        body {
+                font-family: Arial, sans-serif;
+                
+                margin: 0;
+                padding: 20px;
+                color: #333;
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+            .section {
+                margin-top: 20px;
+                border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            }
+            .code-block {
+                background-color: #2e2e2e;
+                color: #f4f4f9;
+                padding: 15px;
+                border-radius: 5px;
+                font-family: "Courier New", monospace;
+                margin-top: 10px;
+                overflow-x: auto;
+            }
+            .code-title {
+                font-size: 1.2em;
+                color: #2e8b57;
+            }
+            p {
+           
+                line-height: 1.5;
+            }
+            ul {
+                font-size: 1.1em;
+                line-height: 1.8;
+            }
+            li {
+                margin-bottom: 10px;
+            }
+            .note {
+                background-color: #ffeb3b;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+            footer {
+                margin-top: 40px;
+                text-align: center;
+                font-size: 1em;
+                color: #777;
+            }
+            @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        #scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 24px;
+  }
+
+  #scrollToTopBtn:hover {
+    background-color: #555;
+  }
+  .slider {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  .slider img {
+    width: 100%;
+    display: block;
+    transition: opacity 1s ease;
+  }
+
+  .slider .slide {
+    display: none;
+  }
+
+  .slider .active {
+    display: block;
+  }
+
+  @keyframes slideAnimation {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slide active">
+          <img src="https://www.shutterstock.com/image-vector/cyber-monday-flat-web-banner-260nw-733395259.jpg" alt="Image 1">
+        </div>
+        <div class="slide">
+          <img src="https://www.shutterstock.com/image-vector/cyber-monday-flat-web-banners-260nw-733395262.jpg" alt="Image 2">
+        </div>
+        <div class="slide">
+          <img src="https://assets.gale.com/docs/galepromo/Gale%20In%20Context%20-%20High%20School%20-%20Web%20Banners%20728x90.png" alt="Image 3">
+        </div>
+      </div>
+    
+      <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slider .slide');
+    
+        function showNextSlide() {
+          slides[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add('active');
+        }
+    
+        setInterval(showNextSlide, 2000); // Change every 3 seconds
+      </script>
+    <button id="scrollToTopBtn" onclick="scrollToTop()">↑</button>
+  
+    <script>
+        window.onscroll = function() {
+          if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("scrollToTopBtn").style.display = "block";
+          } else {
+            document.getElementById("scrollToTopBtn").style.display = "none";
+          }
+        };
+    
+        function scrollToTop() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      </script>
+    <div class="content">
+        <h1>Chapter 5: Programming Concepts and Logic</h1>
+
+        <h2>Introduction</h2>
+        <p>
+            Every computerized device needs instructions to perform tasks. These instructions are written in a <strong>programming language</strong>. Programs are sets of instructions that tell a computer what actions to perform, and when combined, they make up software. The computer doesn't understand programming languages directly; instead, it requires a <strong>language translator</strong> such as an <strong>assembler</strong>, <strong>compiler</strong>, or <strong>interpreter</strong> to convert high-level languages into machine language.
+        </p>
+        <p>
+            The program written by the programmer is called the <strong>source program</strong>. After being translated, it becomes a machine-understandable <strong>object program</strong>.
+        </p>
+
+        <h2>Qualities of Good Programs</h2>
+        <ul>
+            <li><strong>Understandability:</strong> The program should be easy to understand.</li>
+            <li><strong>Correctness:</strong> The program must be error-free.</li>
+            <li><strong>Reliability:</strong> The program should perform its function consistently and correctly.</li>
+            <li><strong>User Interface:</strong> It should be easy to use and navigate.</li>
+            <li><strong>Portability:</strong> The program should be flexible enough to run on different systems.</li>
+        </ul>
+
+        <h2>Programming Languages</h2>
+        <p>
+            Programming languages are used to communicate instructions to a computer. These languages consist of a set of keywords, variables, operators, and other elements such as loops and conditions that help in forming instructions.
+        </p>
+        <p>
+            The process of writing programs is called <strong>programming</strong>, and the person who writes programs is called a <strong>programmer</strong>.
+        </p>
+
+        <h2>Types of Programming Languages</h2>
+        <p>
+            Programming languages can be categorized into <strong>low-level</strong> and <strong>high-level</strong> languages.
+        </p>
+
+        <h3>Low-level Language</h3>
+        <p>Low-level languages are machine-dependent, meaning programs written for one type of system cannot be run on another system. Programming in low-level languages is more difficult and time-consuming.</p>
+        
+        <h4>Types of Low-level Languages:</h4>
+        <ul>
+            <li><strong>Machine-level Language (1GL):</strong> Uses binary code (0’s and 1’s), understood directly by the processor, but difficult to write and debug.</li>
+            <li><strong>Assembly Language (2GL):</strong> Uses mnemonics like ADD, SUB, etc., which are easier to understand than binary code but still require knowledge of the system's architecture.</li>
+        </ul>
+
+        <h3>High-level Language</h3>
+        <p>High-level languages are closer to human languages (like English), which makes them easier to use for writing and debugging programs. They are machine-independent, meaning programs can run on different processors without modification.</p>
+        
+        <h4>Types of High-level Languages:</h4>
+        <ul>
+            <li><strong>Procedural-oriented Languages (3GL):</strong> Focuses on the procedure (steps) to be followed, e.g., C, FORTRAN.</li>
+            <li><strong>Problem/ Object-oriented Languages (4GL):</strong> Focuses on data rather than procedures and supports data encapsulation, inheritance, etc., e.g., Java, C++.</li>
+            <li><strong>Natural Languages (5GL):</strong> Uses simple, natural statements for communication, still in development stage, e.g., PROLOG.</li>
+        </ul>
+
+        <h2>Language Translators/Processors</h2>
+        <p>To convert programs written in assembly or high-level languages into machine language, we use language translators:</p>
+        <ul>
+            <li><strong>Assembler:</strong> Converts assembly language into machine language.</li>
+            <li><strong>Compiler:</strong> Converts the entire program from high-level language to machine language at once (e.g., C, C++).</li>
+            <li><strong>Interpreter:</strong> Converts one line or statement at a time and executes it immediately (e.g., BASIC, PHP).</li>
+        </ul>
+
+        <h2>Syntax and Semantics</h2>
+        <p>In programming, <strong>syntax</strong> refers to the rules that govern the structure of statements in a program. <strong>Semantics</strong> refers to the meaning of individual statements or symbols used in the program.</p>
+        <p>Example in QBasic:</p>
+        <code>Print "This is programming";</code>
+        <p>In this example, <strong>Print</strong> is the semantics, and the entire line is the <strong>syntax</strong>.</p>
+
+        <h2>Errors (BUGS)</h2>
+        <p>Errors in a program are called <strong>bugs</strong>, and the process of removing them is called <strong>debugging</strong>. There are three types of errors:</p>
+        <ul>
+            <li><strong>Syntax Error:</strong> Errors due to incorrect syntax (e.g., missing semicolons).</li>
+            <li><strong>Logical Error:</strong> Errors due to incorrect logic (e.g., incorrect formula for calculation).</li>
+            <li><strong>Runtime Error:</strong> Errors that occur during program execution (e.g., insufficient memory).</li>
+        </ul>
+
+        <h2>Common Terminology in Programming</h2>
+        <p><strong>Data Types:</strong> Specifies the type of data used in a program, e.g., Numeric, Character.</p>
+        <p><strong>Operators:</strong> Special symbols that represent actions (e.g., +, -, *, /).</p>
+        <div class="section">
+        <h2>Data Types</h2>
+        <p>Data types specify the type of data that can be used in a program. Some common types are:</p>
+        <ul>
+            <li><strong>Numeric</strong>: Represents positive and negative whole numbers, including zero.</li>
+            <li><strong>Character</strong>: Includes alphanumeric values and special symbols.</li>
+        </ul>
+        <h3>Example of Numeric:</h3>
+        <div class="example">
+            <code>int age = 25;</code> (where <code>int</code> is a numeric data type).
+        </div>
+        <h3>Example of Character:</h3>
+        <div class="example">
+            <code>char letter = 'A';</code> (where <code>char</code> is a character data type).
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Variable and Constant</h2>
+        <p>Variables and constants are used to store values during program execution.</p>
+        <ul>
+            <li><strong>Variable:</strong> An entity that holds values which can change during execution.</li>
+            <li><strong>Constant:</strong> An entity that holds a value that does not change throughout program execution.</li>
+        </ul>
+        <h3>Example of Variable:</h3>
+        <div class="example">
+            <code>int count = 10;</code> (where <code>count</code> is a variable).
+        </div>
+        <h3>Example of Constant:</h3>
+        <div class="example">
+            <code>const int MAX_VALUE = 100;</code> (where <code>MAX_VALUE</code> is a constant).
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Operands, Operators, and Operations</h2>
+        <p>Operands are the values that operators act on to perform operations.</p>
+        <p>Example operation: <code>S = A + B;</code> where <code>A</code> and <code>B</code> are operands, and <code>+</code> is an operator.</p>
+        <p>The operation itself is called <strong>Addition</strong>.</p>
+        
+        <h3>Types of Operators:</h3>
+        <ul>
+            <li><strong>Arithmetic operators:</strong> +, -, *, /</li>
+            <li><strong>Relational operators:</strong> <, >, <=, >=, ==</li>
+            <li><strong>Logical operators:</strong> AND, OR, NOT</li>
+        </ul>
+        <h3>Example of Arithmetic Operator:</h3>
+        <div class="example">
+            <code>int result = 10 + 5;</code> (where <code>+</code> is the arithmetic operator).
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Library Functions and User-defined Functions</h2>
+        <p>Functions are blocks of code designed to perform specific tasks. There are two types:</p>
+        <ul>
+            <li><strong>Library Functions:</strong> Predefined functions available in a programming language's library.</li>
+            <li><strong>User-defined Functions:</strong> Functions that are created by the user to perform specific tasks.</li>
+        </ul>
+        <h3>Examples of Library Functions:</h3>
+        <div class="example">
+            <code>printf("Hello World!");</code> (a common library function for printing output).
+        </div>
+        <div class="example">
+            <code>scanf("%d", &x);</code> (a library function for taking input).
+        </div>
+        <h3>Example of a User-defined Function:</h3>
+        <div class="example">
+            <code>int add(int a, int b) { return a + b; }</code> (a simple user-defined function to add two numbers).
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Input/Output Functions</h2>
+        <p>Input/Output (I/O) functions are used to read data from the user and display output. Some common I/O functions include:</p>
+        <ul>
+            <li><strong>printf()</strong>: Used to display output in the console. Example: <code>printf("My School");</code></li>
+            <li><strong>scanf()</strong>: Used to take input from the user. Example: <code>scanf("%d", &x);</code></li>
+        </ul>
+    </div>
+        <h2>Program Design Tools</h2>
+        <p>There are several tools used for designing programs, such as:</p>
+        <ul>
+            <li><strong>Algorithm:</strong> A step-by-step procedure to solve a specific problem.</li>
+            <li><strong>Flowchart:</strong> A graphical representation of the steps in a program.</li>
+            <li><strong>Pseudocode:</strong> A simplified version of the program written in plain language.</li>
+        </ul>
+
+        <h3>Algorithm Rules</h3>
+        <ul>
+            <li>It should execute output after a finite number of steps.</li>
+            <li>It should not depend on any specific programming language.</li>
+            <li>It should terminate after a finite number of steps.</li>
+        </ul>
+    </div>
+    <div class="content">
+        <h1>Chapter 5: Algorithms, Flowcharts, and C Programming</h1>
+
+        <h2>Algorithm Examples</h2>
+
+        <h3>1. Write an algorithm to calculate simple interest</h3>
+        <pre>
+Step 1: Start
+Step 2: Read the value of P, T, R
+Step 3: Calculate simple interest by using i = (P * T * R) / 100
+Step 4: Display simple interest (i)
+Step 5: Stop
+        </pre>
+
+        <h3>2. Write an algorithm to check the greatest number among two numbers</h3>
+        <pre>
+Step 1: Start
+Step 2: Read any two numbers a, b
+Step 3: Check if (a > b)
+    If yes, Display "The greatest number is a" and go to step 4
+    If no, Display "The greatest number is b" and go to step 4
+Step 4: Stop
+        </pre>
+
+        <h2>Flowchart</h2>
+        <p>It is a diagrammatic or pictorial representation of the steps involved in an algorithm for solving a particular problem. There are two types of flowcharts:</p>
+        
+        <h3>a. Program Flowchart</h3>
+        <p>It is a type of flowchart which focuses on a specific problem. This type of flowchart portrays only a single task (logic) at a time.</p>
+
+        <h4>Symbols used in Flowchart:</h4>
+        <ul>
+            <li>Start/End: Represented by an oval symbol</li>
+            <li>Process: Represented by a rectangle symbol</li>
+            <li>Decision: Represented by a diamond symbol</li>
+            <li>Input/Output: Represented by a parallelogram symbol</li>
+            <li>Arrow: Represented by lines indicating the flow of control</li>
+        </ul>
+
+        <h4>Examples of Flowchart:</h4>
+        <ul>
+            <li>Flowchart to calculate simple interest</li>
+            <li>Flowchart to find the greatest number among two numbers</li>
+        </ul>
+
+        <h3>b. System Flowchart</h3>
+        <p>It is a type of flowchart that shows the logical flow of a program and its collection. It shows the overview of the data flow and sequence of operations in a system.</p>
+
+        <h4>Symbols used in System Flowchart:</h4>
+        <ul>
+            <li>System processes: Represented by rectangular boxes</li>
+            <li>Inputs and outputs: Represented by parallelograms</li>
+            <li>Data stores: Represented by two horizontal lines</li>
+            <li>Arrows: Indicate the flow of data</li>
+        </ul>
+
+
+
+        <h2>C Programming Language</h2>
+        <p>The C programming language is a high-level programming language developed by Dennis Ritchie at AT&T's Bell Laboratories in the 1970s. It is a very powerful language, used for both system programming and application programming, and often known as a "middle-level" language.</p>
+
+        <h3>Features of C Language</h3>
+        <ul>
+            <li>Supports both high-level and low-level programming</li>
+            <li>Commonly used for system programming and application programming</li>
+            <li>Offers fast and efficient program development</li>
+            <li>Has powerful tools and keywords</li>
+            <li>Uses its own text editor and compiler</li>
+            <li>Supports structured programming</li>
+            <li>Portable across different systems</li>
+            <li>Has a powerful set of library functions</li>
+            <li>Flexible in programming</li>
+        </ul>
+
+        <h3>Advantages and Disadvantages of C Language</h3>
+        <h4>Advantages:</h4>
+        <ul>
+            <li>Suitable for system programming</li>
+            <li>Easy to interact with hardware</li>
+            <li>Easy to learn</li>
+            <li>Compact and efficient code</li>
+            <li>Secure program code</li>
+        </ul>
+        
+        <h4>Disadvantages:</h4>
+        <ul>
+            <li>No runtime checking</li>
+            <li>No strict data type checking</li>
+            <li>Debugging becomes complex as the program grows</li>
+            <li>Requires semicolons for each statement</li>
+        </ul>
+
+        <h2>C Language Terminology</h2>
+
+        <h3>Define the Following Terms</h3>
+
+        <h4>a) Editor</h4>
+        <p>The editor is the area where you type the program. While C language has its own text editor, any text editor can also be used.</p>
+
+        <h4>b) Pre-processor</h4>
+        <p>A pre-processor is a set of complex codes that instruct the machine to understand specific keywords. For example, #include tells the compiler to use header files like "stdio.h".</p>
+
+        <h4>c) Compiler</h4>
+        <p>A compiler converts source code written in a high-level programming language into machine-readable code (object code).</p>
+
+        <h4>d) Linker</h4>
+        <p>A linker is software that links library files with object code to create an executable file (with a .exe extension).</p>
+
+        <h3>Fundamentals of C</h3>
+
+        <h4>Character Set</h4>
+        <p>The character set is the collection of alphabets, digits, whitespace characters, and special symbols used in programming. C uses the following character set:</p>
+        <ul>
+            <li>Alphabets: A-Z, a-z</li>
+            <li>Digits: 0-9</li>
+            <li>Special Symbols: ~ ! @ # $ % ^ & * ( ) - _ + = | \ { } [] : ; " ' <> , . ? /</li>
+        </ul>
+
+        <h4>Comment</h4>
+        <p>Comments are non-executable text in a program used to provide explanations for other developers or programmers. There are two types of comments:</p>
+        <ul>
+            <li>Single-line comment: // Comment text here</li>
+            <li>Multi-line comment: /* Comment text here */</li>
+        </ul>
+
+        <h4>C Tokens</h4>
+        <p>The set of identifiers, keywords, constants, variables, and operators used in C programming are called C Tokens.</p>
+
+        <h4>Identifiers</h4>
+        <p>Identifiers are names given to various program elements such as variables, functions, and arrays.</p>
+
+        <h4>Keywords</h4>
+        <p>Keywords are reserved words in C that cannot be used as identifiers. Examples: int, void, if, else, while, for.</p>
+
+        <h4>Data Types in C</h4>
+        <ul>
+            <li><strong>int</strong>: Represents integer values (whole numbers), uses 2 bytes of memory.</li>
+            <li><strong>float</strong>: Represents floating-point values (decimal numbers), uses 4 bytes of memory.</li>
+            <li><strong>char</strong>: Represents a single character, uses 1 byte of memory.</li>
+            <li><strong>void</strong>: Represents an absence of value.</li>
+        </ul>
+
+        <h4>Constants and Variables</h4>
+        <p>Constants are fixed values, while variables are used to store data that can change during program execution.</p>
+
+        <h4>Operators</h4>
+        <p>Operators are symbols used to perform operations on variables and constants. Examples include arithmetic, relational, and logical operators.</p>
+
+        <h4>Escape Sequences</h4>
+        <ul>
+            <li><strong>\n</strong>: New line</li>
+            <li><strong>\t</strong>: Horizontal tab</li>
+            <li><strong>\0</strong>: Null character</li>
+            <li><strong>\\</strong>: Backslash</li>
+        </ul>
+
+        <h4>Library Functions</h4>
+        <p>Functions are blocks of code that can be used to perform a task. Examples: printf(), scanf(), strlen().</p>
+
+        <h2>Sample Program in C</h2>
+
+        <pre>
+#include <stdio.h>
+
+void main() {
+    int a, b, sum;
+    printf("Enter first number: ");
+    scanf("%d", &a);
+    printf("Enter second number: ");
+    scanf("%d", &b);
+    sum = a + b;
+    printf("The sum is %d", sum);
+}
+        </pre>
+    </div>
+        <h1>Learn C Programming</h1>
+        <p>C programming is a powerful and widely used programming language that is both simple and efficient. It is the foundation of many other languages and is extensively used in system programming, embedded systems, and application development.</p>
+    
+        <!-- Introduction -->
+        <div class="section">
+            <h2>1. Introduction to C Programming</h2>
+            <p>C is a general-purpose, procedural programming language that allows you to work closely with the hardware. It was developed in the early 1970s by Dennis Ritchie at AT&T Bell Labs. C is known for its efficiency and flexibility, making it a popular choice for software development.</p>
+        </div>
+    
+        <!-- C Program Structure -->
+        <div class="section">
+            <h2>2. C Program Structure</h2>
+            <p>A simple C program consists of the following parts:</p>
+            <ul>
+                <li><strong>Header files</strong>: Files that include function prototypes and constants.</li>
+                <li><strong>Main function</strong>: The entry point of the program where the execution begins.</li>
+                <li><strong>Statements</strong>: A set of instructions that define what the program does.</li>
+            </ul>
+    
+            <div class="code-block">
+                <p class="code-title">Basic C Program Structure</p>
+                <pre>
+    #include <stdio.h>
+    
+    int main() {
+        printf("Hello, World!\n");
+        return 0;
+    }
+                </pre>
+            </div>
+        </div>
+    
+        <!-- C Data Types -->
+        <div class="section">
+            <h2>3. C Data Types</h2>
+            <p>C supports several data types for storing values:</p>
+            <ul>
+                <li><strong>int</strong>: Stores integer values (e.g., 10, -5).</li>
+                <li><strong>float</strong>: Stores floating-point numbers (e.g., 3.14, -0.001).</li>
+                <li><strong>char</strong>: Stores single characters (e.g., 'a', 'Z').</li>
+                <li><strong>double</strong>: Stores larger floating-point numbers.</li>
+                <li><strong>void</strong>: Represents the absence of value.</li>
+            </ul>
+            
+            <div class="code-block">
+                <p class="code-title">C Program to Show Data Types</p>
+                <pre>
+    #include <stdio.h>
+    
+    int main() {
+        int x = 5;
+        float y = 3.14;
+        char z = 'A';
+    
+        printf("Integer: %d\n", x);
+        printf("Float: %.2f\n", y);
+        printf("Char: %c\n", z);
+        
+        return 0;
+    }
+                </pre>
+            </div>
+        </div>
+    
+        <!-- Control Structures -->
+        <div class="section">
+            <h2>4. Control Structures in C</h2>
+            <p>C provides control structures to change the flow of execution based on certain conditions.</p>
+    
+            <h3>4.1. if Statement</h3>
+            <div class="code-block">
+                <p class="code-title">C Program: if Statement</p>
+                <pre>
+    #include <stdio.h>
+    
+    int main() {
+        int a = 10;
+    
+        if (a > 5) {
+            printf("a is greater than 5\n");
+        }
+    
+        return 0;
+    }
+                </pre>
+            </div>
+    
+            <h3>4.2. if-else Statement</h3>
+            <div class="code-block">
+                <p class="code-title">C Program: if-else Statement</p>
+                <pre>
+    #include <stdio.h>
+    
+    int main() {
+        int a = 3;
+    
+        if (a > 5) {
+            printf("a is greater than 5\n");
+        } else {
+            printf("a is not greater than 5\n");
+        }
+    
+        return 0;
+    }
+                </pre>
+            </div>
+    
+            <h3>4.3. if-else-if Statement</h3>
+            <div class="code-block">
+                <p class="code-title">C Program: if-else-if Statement</p>
+                <pre>
+    #include <stdio.h>
+    
+    int main() {
+        int age = 18;
+    
+        if (age >= 18) {
+            printf("You can vote\n");
+        } else if (age >= 16) {
+            printf("You can drive\n");
+        } else {
+            printf("You are too young\n");
+        }
+    
+        return 0;
+    }
+                </pre>
+            </div>
+        </div>
+    
+        <!-- Functions -->
+        <div class="section">
+            <h2>5. Functions in C</h2>
+            <p>Functions allow you to modularize your code by grouping related statements together. C has both built-in and user-defined functions.</p>
+    
+            <div class="code-block">
+                <p class="code-title">C Program: Function Example</p>
+                <pre>
+    #include <stdio.h>
+    
+    // Function declaration
+    void greet();
+    
+    int main() {
+        greet();
+        return 0;
+    }
+    
+    // Function definition
+    void greet() {
+        printf("Hello, welcome to C programming!\n");
+    }
+                </pre>
+            </div>
+        </div>
+    
+        <!-- Loops -->
+        <div class="section">
+            <h2>6. Loops in C</h2>
+            <p>Loops allow you to repeat a block of code multiple times based on a condition.</p>
+    
+            <h3>6.1. for Loop</h3>
+            <div class="code-block">
+                <p class="code-title">C Program: for Loop</p>
+                <pre>
+    #include <stdio.h>
+    
+    int main() {
+        for (int i = 1; i <= 5; i++) {
+            printf("%d\n", i);
+        }
+    
+        return 0;
+    }
+                </pre>
+            </div>
+    
+            <h3>6.2. while Loop</h3>
+            <div class="code-block">
+                <p class="code-title">C Program: while Loop</p>
+                <pre>
+    #include <stdio.h>
+    
+    int main() {
+        int i = 1;
+    
+        while (i <= 5) {
+            printf("%d\n", i);
+            i++;
+        }
+    
+        return 0;
+    }
+                </pre>
+            </div>
+    
+            <h3>6.3. do-while Loop</h3>
+            <div class="code-block">
+                <p class="code-title">C Program: do-while Loop</p>
+                <pre>
+    #include <stdio.h>
+    
+    int main() {
+        int i = 1;
+    
+        do {
+            printf("%d\n", i);
+            i++;
+        } while (i <= 5);
+    
+        return 0;
+    }
+                </pre>
+            </div>
+        </div>
+        <div class="section">
+        <h1>Understanding Arrays in C Programming</h1>
+        <p>In C programming, an array is a collection of variables of the same type, stored in contiguous memory locations. Arrays allow you to store multiple values in a single variable and access them efficiently using indices.</p>
+        
+        <h2>Array Declaration and Initialization</h2>
+        <p>In C, arrays are declared by specifying the type of the elements and the number of elements the array will hold. The general syntax for declaring an array is:</p>
+        <pre class="code-block">
+        <span class="highlight">data_type</span> <span class="highlight">array_name</span>[<span class="highlight">size</span>];
+        </pre>
+        <p>Here, <strong>data_type</strong> refers to the type of data (like int, float, char, etc.), <strong>array_name</strong> is the name of the array, and <strong>size</strong> indicates the number of elements the array will hold.</p>
+        
+        <h3>Example:</h3>
+        <pre class="code-block">
+        int numbers[5];  // Declares an array of 5 integers
+        </pre>
+        <p>In the above example, the array <code>numbers</code> can hold 5 integer values.</p>
+        
+        <h2>Initializing Arrays</h2>
+        <p>Arrays can also be initialized at the time of declaration. Here’s the syntax:</p>
+        <pre class="code-block">
+        <span class="highlight">data_type</span> <span class="highlight">array_name</span>[<span class="highlight">size</span>] = {value1, value2, ..., valueN};
+        </pre>
+        <p>In this case, each element of the array is assigned a value at the time of initialization.</p>
+        
+        <h3>Example:</h3>
+        <pre class="code-block">
+        int numbers[5] = {1, 2, 3, 4, 5};  // Initializes the array with 5 integer values
+        </pre>
+        <p>If the number of values specified is less than the size of the array, the remaining elements will be automatically initialized to 0.</p>
+        
+        <h2>Accessing Array Elements</h2>
+        <p>Array elements can be accessed using their index. In C, array indices start from 0. To access an element, you use the array name followed by the index in square brackets.</p>
+        
+        <h3>Example:</h3>
+        <pre class="code-block">
+        int first_value = numbers[0];  // Accesses the first element (1) of the array
+        </pre>
+        <p>Here, <code>numbers[0]</code> refers to the first element in the <code>numbers</code> array, which is 1.</p>
+        
+        <h2>Example C Program Using Arrays</h2>
+        <div class="example-box">
+            <h3>Program: Find the Sum of Elements in an Array</h3>
+            <pre class="code-block">
+        #include <stdio.h>
+        
+        int main() {
+        int numbers[5] = {1, 2, 3, 4, 5};  // Declare and initialize the array
+        int sum = 0;
+        
+        // Loop to calculate the sum of array elements
+        for(int i = 0; i < 5; i++) {
+            sum += numbers[i];  // Add each element to the sum
+        }
+        
+        // Output the result
+        printf("The sum of the array elements is: %d\n", sum);
+        
+        return 0;
+        }
+            </pre>
+            <p><strong>Output:</strong></p>
+            <pre class="code-block">
+        The sum of the array elements is: 15
+            </pre>
+            </div>
+        <!-- Conclusion -->
+        <div class="section">
+            <h2>7. Conclusion</h2>
+            <p>C programming is a powerful language that forms the foundation of many modern languages. It is essential to learn the syntax, control structures, and functions to become proficient in C programming. Practice writing and running programs to solidify your understanding.</p>
+        </div>
+        <div class="section">
+
+    <h1 style="text-align:center;">Some Important Questions</h1>
+            <div class="code-block">
+
+   <p class="code-title">1. Write a program to check whether input number is prime number</p>
+                <pre>
+    #include <stdio.h>
+    int main() 
+    {
+        int i,n=0,k=0;
+        printf("Enter any number");
+        scanf("%d",&n);
+        for(i=1;i<=n;i++)
+        {
+            if(n%i==0)
+            {
+              k=k+1;  
+            }
+        } 
+        if(k==2)
+        {
+            printf("Prime number");  
+        }
+        else
+        {
+            printf("Not a Prime number");  
+        }
+        return 0;
+    }
+                </pre>
+            </div>
+    
+        <div class="code-block">
+            <p class="code-title">2. Write a program to find factorial of input number </p>
+            <pre>
+#include <stdio.h>
+
+int main() {
+    int i,n=0,k=1;
+        printf("Enter any number");
+        scanf("%d",&n);
+        for(i=1;i<=n;i++)
+        {
+              k=k*i;  
+        } 
+            printf("Factorial is %d",k);  
+        return 0;
+    }
+            </pre>
+        </div>
+   
+    <div class="code-block">
+        <p class="code-title">3. Write a program to check whether input number is palindrome</p>
+        <pre>
+#include <stdio.h>
+int main() {
+    int i,n=0,rev,backup;
+    printf("Enter any number");
+    scanf("%d",&n);
+    backup=n;
+   while(n!=0)
+    {
+        i=n%10;
+        rev=rev*10+i;
+        n=n/10;
+    } 
+    if(rev==backup)
+    {
+        printf("Palindrome");  
+    }
+    else
+    {
+        printf("Not a Palindrome");  
+    }
+    return 0;
+}
+        </pre>
+    </div>
+
+<div class="code-block">
+    <p class="code-title">4. Write a program to generate fibonancci series till n term </p>
+    <pre>
+#include <stdio.h>
+int main() {
+    int i,n,c,a,b;
+    printf("Enter length of fibonancci series");
+    scanf("%d",&n);
+    printf("Enter starting two numbers of fibonancci series");
+    scanf("%d %d",&a,&b);
+    printf("%d,%d",a,b);
+    for(i=0;i<=(n-2);i++)
+    {
+        c=a+b;
+        printf("%d",c);
+        a=b;
+        b=c;
+    } 
+    return 0;
+}
+    </pre>
+
+</div>
+<div class="code-block">
+    <p class="code-title">5. Write a program to check whether input number is a perfect number</p>
+    <pre>
+#include <stdio.h>
+int main() {
+    int i,n=0,k=0,b;
+    printf("Enter any number");
+    scanf("%d",&n);
+    b=n;
+    for(i=1;i< n;i++)
+    {
+        if(n%i==0)
+        {
+          k=k+i;  
+        }
+    } 
+    if(k==b)
+    {
+        printf("Perfect number");  
+    }
+    else
+    {
+        printf("Not a Perfect number");  
+    }
+    return 0;
+}
+
+    </pre>
+</div>
+</div>
+</div>
+</body>
+</html>
+

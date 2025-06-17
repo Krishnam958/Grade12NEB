@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 6: Web Technology - I</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        code {
+            font-family: monospace;
+            background-color: #f1f1f1;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        #scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 24px;
+  }
+
+  #scrollToTopBtn:hover {
+    background-color: #555;
+  }
+  .slider {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  .slider img {
+    width: 100%;
+    display: block;
+    transition: opacity 1s ease;
+  }
+
+  .slider .slide {
+    display: none;
+  }
+
+  .slider .active {
+    display: block;
+  }
+
+  @keyframes slideAnimation {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slide active">
+          <img src="https://www.shutterstock.com/image-vector/cyber-monday-flat-web-banner-260nw-733395259.jpg" alt="Image 1">
+        </div>
+        <div class="slide">
+          <img src="https://www.shutterstock.com/image-vector/cyber-monday-flat-web-banners-260nw-733395262.jpg" alt="Image 2">
+        </div>
+        <div class="slide">
+          <img src="https://assets.gale.com/docs/galepromo/Gale%20In%20Context%20-%20High%20School%20-%20Web%20Banners%20728x90.png" alt="Image 3">
+        </div>
+      </div>
+    
+      <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slider .slide');
+    
+        function showNextSlide() {
+          slides[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add('active');
+        }
+    
+        setInterval(showNextSlide, 2000); // Change every 3 seconds
+      </script>
+    <button id="scrollToTopBtn" onclick="scrollToTop()">↑</button>
+  
+    <script>
+        window.onscroll = function() {
+          if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("scrollToTopBtn").style.display = "block";
+          } else {
+            document.getElementById("scrollToTopBtn").style.display = "none";
+          }
+        };
+    
+        function scrollToTop() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      </script>
+    <h1>Chapter 6: Web Technology - I</h1>
+
+    <!-- Introduction to the Internet -->
+    <div class="section">
+        <h2>Introduction to the Internet</h2>
+        <p>The Internet is the global network of networks, a massive collection of interconnected computers worldwide that form a web of connections. It allows the exchange of data and resources across vast distances.</p>
+    </div>
+
+    <!-- Components Required for Internet Connections -->
+    <div class="section">
+        <h2>Components Required for Internet Connections</h2>
+        <p>The basic requirements for connecting to the Internet include:</p>
+        <ul>
+            <li>A TCP/IP enabled computer with a web browser.</li>
+            <li>An account with an ISP (Internet Service Provider).</li>
+            <li>A telephone line.</li>
+            <li>A MODEM to connect the telephone line and computer.</li>
+        <p> Acomputer with the following specifications:</p>
+        <ul>
+            <li>Minimum 386 microprocessor chip with 16 MB RAM.</li>
+            <li>Color monitor with 256 color support and 640x480 resolution.</li>
+            <li>Hard disk with 200 MB free space.</li>
+            <li>Multimedia sound card and speakers.</li>
+         </ul>
+        </ul>
+    </div>
+
+    <!-- Internet Services and Applications -->
+    <div class="section">
+        <h2>Internet Services and Applications</h2>
+
+        <h3>a) World Wide Web (WWW)</h3>
+        <p>The WWW is a system of interlinked hypertext documents accessed via the Internet using the Hypertext Transfer Protocol (HTTP). It allows users to browse web pages containing text, images, videos, and other multimedia content.</p>
+
+        <h3>b) Web Browser</h3>
+        <p>A web browser is software that allows users to view web pages on the Internet. Popular web browsers include Internet Explorer, Safari, Mozilla Firefox, Opera, Netscape Navigator, etc.</p>
+
+        <h3>c) FTP - File Transfer Protocol</h3>
+        <p>FTP is a protocol that allows users to transfer files between computers over the Internet. It enables the movement of data, graphics, and other files from one system to another.</p>
+
+        <h3>d) Electronic Mail (E-mail)</h3>
+        <p>E-mail is a method of exchanging digital messages over the Internet. It supports text, images, videos, and other data types, making it one of the most widely used services.</p>
+
+        <h3>e) Voicemail</h3>
+        <p>Voicemail allows users to leave voice messages for others, providing an efficient way to communicate asynchronously. Specialized software and hardware answer calls and record messages.</p>
+
+        <h3>f) USENET - View and News</h3>
+        <p>USENET is an Internet-based BBS (Bulletin Board Service) where messages are organized into thousands of newsgroups, covering various topics of interest.</p>
+
+        <h3>g) Chat</h3>
+        <p>Chat is a real-time communication tool allowing users to type messages to each other online. It often includes offline messaging when the recipient is not available.</p>
+
+        <h3>h) IRC - Internet Relay Chat</h3>
+        <p>IRC is a large-scale chat system allowing people from around the world to engage in live conversations within channels. Each channel has a specific topic, and messages are broadcasted to all participants in real-time.</p>
+
+        <h3>i) Video Conferencing</h3>
+        <p>Video conferencing allows face-to-face communication over the Internet using webcams and microphones, enabling real-time audio and video exchanges.</p>
+
+        <h3>j) Universal Resource Locator (URL)</h3>
+        <p>URLs are unique web addresses that identify resources on the Internet. The URL format includes the protocol, host computer, domain name, and domain type.</p>
+        <p>Example: <code>http://www.animalplanet.com</code></p>
+
+        <h3>k) E-Fax (Electronic Fax)</h3>
+        <p>E-Fax is a method for sending and receiving faxes over the Internet. Unlike traditional faxes, E-Fax messages are sent to a server, which forwards them to the recipient's computer.</p>
+
+        <h3>l) TELNET - Remote Login</h3>
+        <p>Telnet is a protocol allowing users to remotely access and manage another computer system across a network, regardless of geographic distance.</p>
+
+        <h3>m) Navigators - Information Servers</h3>
+        <p>These are utilities used to find, locate, and retrieve information on the Internet. Some popular navigators include Gopher, Archie, and WAIS.</p>
+    </div>
+
+    <!-- Internet Terminologies -->
+    <div class="section">
+        <h2>Internet Terminologies</h2>
+        <ul>
+            <li><strong>ISP:</strong> Internet Service Provider, a company that provides access to the Internet.</li>
+            <li><strong>Link:</strong> A clickable item in a web page that leads to another page or resource.</li>
+            <li><strong>Search Engine:</strong> A tool for finding websites or resources on the Internet. Examples include Yahoo, Google, and Bing.</li>
+            <li><strong>Domain Name and IP Address:</strong> A domain name is a unique identifier for a website, while the IP address is its numeric counterpart used to establish connections between computers.</li>
+            <li><strong>DNS Server:</strong> Domain Name System server, which translates domain names into IP addresses.</li>
+            <li><strong>Web Server:</strong> A server that stores web pages and serves them to users' browsers when requested.</li>
+            <li><strong>Mailing Lists:</strong> A list of email addresses that receives updates or information regularly.</li>
+            <li><strong>POP Server:</strong> A server where incoming mail is stored, allowing users to access their messages using POP (Post Office Protocol).</li>
+            <li><strong>SMTP Server:</strong> A server used to send and transfer emails over the Internet.</li>
+            <li><strong>FTP (File Transfer Protocol):</strong> A protocol that facilitates the transfer of files between computers over a network.</li>
+            <li><strong>Anonymous FTP:</strong> A method of accessing publicly available files on FTP servers without needing an account.</li>
+            <li><strong>HTTP (Hypertext Transfer Protocol):</strong> The protocol used by web browsers to communicate with web servers.</li>
+            <li><strong>Proxy Server:</strong> A server that acts as an intermediary to improve access speed and security.</li>
+            <li><strong>Internet Roaming:</strong> A service that allows users to use their Internet account from any part of the world as long as they are connected to a partner ISP.</li>
+        </ul>
+    </div>
+
+    <!-- Introduction to HTML -->
+    <div class="section">
+        <h2>Introduction to HTML</h2>
+        <p>HTML stands for Hypertext Markup Language, a standard for creating web pages. HTML files consist of text and tags that describe the content of a web page. These tags are interpreted by web browsers to render the page appropriately for users. HTML was first developed by Tim Berners-Lee and is based on SGML (Standard Generalized Markup Language).</p>
+        <p>The different versions of HTML include HTML 1.0, HTML 2.0, HTML 3.2, HTML 4.01, and HTML 5.0.</p>
+
+        <h3>Uses of HTML</h3>
+        <ul>
+            <li>Creating the basic structure and layout of web pages.</li>
+            <li>Embedding images, videos, and audio.</li>
+            <li>Customizing text formatting (bold, italics, etc.).</li>
+            <li>Creating hyperlinks and lists.</li>
+        </ul>
+
+        <h3>Advantages of HTML</h3>
+        <ul>
+            <li>Easy to learn and use, flexible and user-friendly.</li>
+            <li>Supported by all web browsers and operating systems.</li>
+            <li>Allows for easy modification of content.</li>
+            <li>Works well with all major search engines.</li>
+        </ul>
+
+        <h3>Disadvantages of HTML</h3>
+        <ul>
+            <li>Cannot create dynamic web pages by itself.</li>
+            <li>Limited in creating interactive and visually rich pages without additional technologies like JavaScript, PHP, etc.</li>
+            <li>Incompatibilities between different browsers.</li>
+        </ul>
+    </div>
+    <section>
+        <h2>HTML Tags</h2>
+        <p>HTML tags are the instructions or commands given to the web browser in order to organize text, images, and other components of web pages. These HTML tags are executed by web browsers. Like any programming language, these tags help to perform specific actions. HTML tags are written inside angular brackets &lt;&gt;.</p>
+        
+        <h3>Types of HTML Tags</h3>
+        <ul>
+            <li><strong>Pair Tags:</strong> Tags with both opening and closing tags. They are also known as container tags.</li>
+            <li><strong>Singular Tags:</strong> Tags that have only an opening tag, and no closing tag. They are also known as empty tags.</li>
+        </ul>
+
+        <h4>Example of Pair Tags</h4>
+        <p>&lt;html&gt; &lt;/html&gt; <br> &lt;body&gt; &lt;/body&gt;</p>
+
+        <h4>Example of Singular Tags</h4>
+        <p>&lt;img src="image.jpg" /&gt; <br> &lt;br /&gt;</p>
+    </section>
+
+    <section>
+        <h2>Attributes</h2>
+        <p>Attributes are the descriptive properties of HTML tags. They are written within the respective tag and help customize or modify various components of webpages according to the requirement.</p>
+        
+        <h3>Example of Attributes</h3>
+        <ul>
+            <li><strong>bgcolor:</strong> Used to add a background color.</li>
+            <li><strong>text:</strong> Used to change the text color.</li>
+            <li><strong>background:</strong> Used to add an image as the background of a webpage.</li>
+        </ul>
+
+        <h4>Example Usage of Attributes</h4>
+        <p>&lt;body bgcolor="lightblue" text="red"&gt;</p>
+    </section>
+
+    <section>
+        <h2>Steps to Write and Execute HTML Document</h2>
+        <ol>
+            <li>Write all HTML tags, attributes, and related information in a text editor (like Notepad).</li>
+            <li>Save your document with a .HTML extension (e.g., <code>sample.html</code>).</li>
+            <li>Execute the HTML file by opening it in a web browser.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Common Terminologies in Web Design</h2>
+        <ul>
+            <li><strong>Webpage:</strong> An HTML document or one written in any other scripting language that displays content on the internet.</li>
+            <li><strong>Website:</strong> A collection of interrelated webpages that can contain information connected through hyperlinks.</li>
+            <li><strong>Home Page:</strong> The introductory page displayed first when accessing a website.</li>
+            <li><strong>Web Browser:</strong> A program that helps users access web content. Examples include Google Chrome, Mozilla Firefox, Safari, etc.</li>
+            <li><strong>URL (Uniform Resource Locator):</strong> The address used to locate a webpage on the internet. Example: https://readersnepal.com</li>
+        </ul>
+    </section>
+
+    <header>
+        <h1>DBMS (Database Management System)</h1>
+    </header>
+
+    <section>
+        <h2>Data and Information</h2>
+        <p><strong>Data:</strong> Raw facts and figures that are isolated and uninterpreted. They don't give any meaningful sense until processed. Example: "Ram, 19, Pokhara".</p>
+        <p><strong>Information:</strong> Meaningful results obtained after processing data. Example: "Ram is a 19-year-old student who lives in Pokhara-12".</p>
+        <p>A database is an organized collection of data that can be processed to obtain information. Examples of databases include dictionaries, mark ledgers, and telephone directories.</p>
+    </section>
+
+    <section>
+        <h2>Database Management System (DBMS)</h2>
+        <p>A DBMS is a software application used to manage and organize data in a database. It helps in storing, processing, and retrieving data efficiently. Examples of DBMS include MS Access, MySQL, Oracle, and FoxPro.</p>
+
+        <h3>Advantages of DBMS</h3>
+        <ul>
+            <li>Allows users to search data quickly and easily.</li>
+            <li>Reduces data redundancy (repetition).</li>
+            <li>Allows data sharing over a network.</li>
+            <li>Provides security and privacy for data.</li>
+            <li>Improves data consistency (variance).</li>
+            <li>Provides an organized way of storing data.</li>
+        </ul>
+
+        <h3>Disadvantages of DBMS</h3>
+        <ul>
+            <li>Higher installation and operating costs.</li>
+            <li>Requires more disk space.</li>
+            <li>May have security and privacy issues.</li>
+            <li>Requires technical manpower (DBA) for maintenance and operation.</li>
+        </ul>
+    </section>
+</body>
+</html>
+

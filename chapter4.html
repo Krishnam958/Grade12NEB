@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Packages - MS-Office</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+        .feature-list {
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        
+        }
+        .application {
+            margin-bottom: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+        
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        #scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 24px;
+  }
+
+  #scrollToTopBtn:hover {
+    background-color: #555;
+  }
+  .slider {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  .slider img {
+    width: 100%;
+    display: block;
+    transition: opacity 1s ease;
+  }
+
+  .slider .slide {
+    display: none;
+  }
+
+  .slider .active {
+    display: block;
+  }
+
+  @keyframes slideAnimation {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="slide active">
+          <img src="https://www.shutterstock.com/image-vector/cyber-monday-flat-web-banner-260nw-733395259.jpg" alt="Image 1">
+        </div>
+        <div class="slide">
+          <img src="https://www.shutterstock.com/image-vector/cyber-monday-flat-web-banners-260nw-733395262.jpg" alt="Image 2">
+        </div>
+        <div class="slide">
+          <img src="https://assets.gale.com/docs/galepromo/Gale%20In%20Context%20-%20High%20School%20-%20Web%20Banners%20728x90.png" alt="Image 3">
+        </div>
+      </div>
+    
+      <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slider .slide');
+    
+        function showNextSlide() {
+          slides[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % slides.length;
+          slides[currentIndex].classList.add('active');
+        }
+    
+        setInterval(showNextSlide, 2000); // Change every 3 seconds
+      </script>
+    <button id="scrollToTopBtn" onclick="scrollToTop()">↑</button>
+  
+    <script>
+        window.onscroll = function() {
+          if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            document.getElementById("scrollToTopBtn").style.display = "block";
+          } else {
+            document.getElementById("scrollToTopBtn").style.display = "none";
+          }
+        };
+    
+        function scrollToTop() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      </script>
+    <h1>Application Packages in MS-Office</h1>
+
+    <div class="application" id="msword">
+        <h2>MS-Word (Word Processor)</h2>
+        <p><strong>Introduction:</strong> MS-Word is a word processing software developed by Microsoft Corporation as part of the MS-Office suite. It is used to create, edit, and print documents such as letters, reports, and other written material. The documents created with MS-Word have the file extensions <code>.doc</code> or <code>.docx</code>.</p>
+        
+        <h3>Features of MS-Word:</h3>
+        <ul class="feature-list">
+            <li>Fast operation without mechanical movement.</li>
+            <li>Editing text: Allows text customization like bold, italic, underline, different fonts, etc.</li>
+            <li>Permanent storage of documents on disks.</li>
+            <li>Graphics: Insert images, graphs, charts, and other objects.</li>
+            <li>OLE (Object Linking and Embedding): Sharing information between programs.</li>
+            <li>Mail Merge: Easily produce multiple letters, labels, etc.</li>
+            <li>Spelling and Grammar checker: Automatic checking for errors.</li>
+            <li>Use of thesaurus: Find synonyms and antonyms with ease.</li>
+            <li>Formatting: Various formatting tools to enhance the appearance of documents.</li>
+        </ul>
+    </div>
+
+    <div class="application" id="msexcel">
+        <h2>MS-Excel (Spreadsheet)</h2>
+        <p><strong>Introduction:</strong> MS-Excel is a spreadsheet software that allows users to store, organize, and analyze numerical and text data. It is used for tasks like financial modeling, statistical analysis, and data visualization. The file extensions for Excel are <code>.xls</code> and <code>.xlsx</code>.</p>
+
+        <h3>Common Terminologies in MS-Excel:</h3>
+        <ul class="feature-list">
+            <li><strong>Worksheet:</strong> A collection of rows and columns used to organize data.</li>
+            <li><strong>Workbook:</strong> A file that contains multiple worksheets.</li>
+            <li><strong>Cell:</strong> The intersection of a row and column. E.g., <code>A1</code>.</li>
+        </ul>
+
+        <h3>Features of MS-Excel:</h3>
+        <ul class="feature-list">
+            <li>Work in multiple worksheets at once.</li>
+            <li>Create different types of charts and graphs.</li>
+            <li>Perform automatic calculations using formulas.</li>
+            <li>Sort data in ascending or descending order.</li>
+            <li>Use object linking and embedding features.</li>
+            <li>Formatting features to enhance data presentation.</li>
+        </ul>
+
+        <h3>Cell References in Excel:</h3>
+        <ul class="feature-list">
+            <li><strong>Relative Cell Reference:</strong> Changes when the formula is copied (e.g., <code>A1</code>).</li>
+            <li><strong>Absolute Cell Reference:</strong> Stays fixed when the formula is copied (e.g., <code>$A$1</code>).</li>
+        </ul>
+    </div>
+
+    <div class="application" id="mspowerpoint">
+        <h2>MS-PowerPoint (Presentation)</h2>
+        <p><strong>Introduction:</strong> MS-PowerPoint is a presentation software that allows users to create slideshows consisting of a series of slides. These slides can contain text, images, charts, and multimedia elements to communicate information effectively. The file extensions for PowerPoint are <code>.ppt</code> and <code>.pptx</code>.</p>
+
+        <h3>Features of MS-PowerPoint:</h3>
+        <ul class="feature-list">
+            <li>Formatting: Customize text and slide elements.</li>
+            <li>Predefined layouts, themes, and templates to speed up presentation creation.</li>
+            <li>Slide transitions and custom animations for visual appeal.</li>
+            <li>Create graphs, charts, and diagrams to represent data.</li>
+            <li>Supports internal and external hyperlinks.</li>
+            <li>Simple operations like cut, copy, paste, find and replace.</li>
+        </ul>
+    </div>
+
+</body>
+</html>

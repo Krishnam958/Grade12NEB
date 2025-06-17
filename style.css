@@ -1,0 +1,210 @@
+/* Basic styling for the body */
+body {
+    padding: 0;
+    height: 100vh; /* Full height */
+    margin: 0; /* Remove any margin */
+    background-image: url('https://www.ituonline.com/wp-content/uploads/2023/10/What-Does-It-Mean-for-Computers.jpg');
+    background-size: cover; /* Make the image cover the entire screen */
+    background-position: center; /* Center the background */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    display: flex;
+    color: white; /* Text color */
+    font-family: Arial, sans-serif;
+   overflow: hidden;
+   z-index: 1;     
+}
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit; /* Inherit the same background image */
+    background-size: inherit;
+    background-position: inherit;
+    filter: blur(10px); /* Apply the blur effect to the background */
+    z-index: -1; /* Keep the blurred background behind the content */
+  }
+  
+/* Navigation bar container */
+nav {
+    
+    padding: 20px ;
+}
+
+/* Navbar styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Button styling */
+.nav-button {
+    background-color: #333;
+    color: white;
+    padding: 15px 30px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;  /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;
+    font-size: 16px;
+
+}
+
+
+.nav-button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px #666;
+}
+/* Hover effect for buttons */
+.nav-button:hover {
+    background-color: #575757;
+    transform: scale(1.1);  /* Slightly enlarge the button on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 10px #666;
+}
+
+/* Hide navigation links by default in mobile view */
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.nav-links button {
+    display: inline-block;
+}
+
+.nav-links.active {
+    display: block; /* Make the links visible when active */
+}
+
+/* Hamburger menu (visible only in mobile view) */
+.hamburger {
+    display: none;
+    font-size: 30px;
+    background-color: #333;
+  
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 24px;
+  }
+
+  #scrollToTopBtn:hover {
+    background-color: #555;
+  }
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    .navbar {
+        justify-content: space-between;
+    }
+
+    /* Hide navigation buttons by default */
+    .nav-links {
+        display: none;
+        width: 100%;
+    }
+
+    /* Show the hamburger menu in mobile view */
+    .hamburger {
+        display: block;
+    }
+
+    /* Display the navigation links as block elements when active */
+    .nav-links.active {
+        display: block;
+        width: 100%;
+        text-align: left; /* Align links to the left */
+    }
+
+    /* Style the navigation buttons for mobile */
+    .nav-links button {
+        width: 100%;  /* Make each button take full width */
+        margin-bottom: 10px; /* Space between buttons */
+        padding: 12px 20px; /* Padding adjustment */
+        
+    }
+    .nav-links {
+        position: relative;
+        z-index: 3; /* Higher than .bg-text */
+    }
+    
+}
+
+/* Adjust padding for very small screens */
+@media screen and (max-width: 480px) {
+    .nav-button {
+        padding: 10px 15px;
+    }
+}
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .bg-text {
+        display: none; /* Hides the "COMPUTER COURSE" text in mobile view */
+    }
+}
+  
+  /* Position text in the middle of the page/image */
+  .bg-text {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+    font-size: 4em;
+    background: linear-gradient(45deg, #ff0080, #00b3ff, #ff8c00, #ffeb3b);
+    background-size: 400% 400%;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient 4s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  canvas {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    padding-top: 70px;
+}
+ 

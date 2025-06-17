@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMPUTER SYLLABUS </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <!-- Hamburger Menu Icon (for mobile view) -->
+            <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+            
+            <!-- Navigation Buttons (Initially hidden on mobile) -->
+            <div class="nav-links">
+                <button onclick="window.location.href='overview.html'" class="nav-button">Home</button>
+                <button onclick="window.location.href='chapter1.html'" class="nav-button">Chapter 1</button>
+                <button onclick="window.location.href='chapter2.html'" class="nav-button">Chapter 2</button>
+                <button onclick="window.location.href='chapter3.html'" class="nav-button">Chapter 3</button>
+                <button onclick="window.location.href='chapter4.html'" class="nav-button">Chapter 4</button>
+                <button onclick="window.location.href='chapter5.html'" class="nav-button">Chapter 5</button>
+                <button onclick="window.location.href='chapter6.html'" class="nav-button">Chapter 6</button>
+                <button onclick="window.location.href='chapter7.html'" class="nav-button">Chapter 7</button>
+                <button onclick="window.location.href='chapter8.html'" class="nav-button">Chapter 8</button>
+                <button onclick="window.location.href='contact.html'" class="nav-button">Contact</button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="bg-text">
+      <h1 style="font-size:50px">COMPUTER COURSE</h1>
+      <p>+2 NEB GRADE 12</p>
+    </div>
+    <script>
+        // JavaScript to toggle the visibility of the nav-links (dropdown menu)
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            
+            // Toggle between hamburger and close icon
+            if (navLinks.classList.contains('active')) {
+                hamburger.innerHTML = '&times;'; // Change to close icon
+            } else {
+                hamburger.innerHTML = '&#9776;'; // Change to hamburger icon
+            }
+        }
+    </script>
+     <canvas id="canvas"></canvas> 
+     <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let signals = [];
+
+        function createSignal() {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                length: Math.random() * 10 + 80,
+                speed: Math.random() * 1 + 1,
+                opacity: Math.random() * 0.5 + 0.3,
+                color: `rgba(0, 255, 255, ${Math.random() * 0.7 + 0.3})`
+            };
+        }
+
+        for (let i = 0; i < 20; i++) { // Reduced number of signals
+            signals.push(createSignal());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.lineWidth = 3;
+            ctx.lineCap = "round";
+            
+            signals.forEach((signal, index) => {
+                ctx.beginPath();
+                ctx.moveTo(signal.x, signal.y);
+                ctx.lineTo(signal.x + signal.length, signal.y);
+                ctx.strokeStyle = signal.color;
+                ctx.stroke();
+                signal.x += signal.speed;
+                
+                if (signal.x > canvas.width) {
+                    signals[index] = createSignal();
+                    signals[index].x = -signal.length;
+                }
+            });
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
+
